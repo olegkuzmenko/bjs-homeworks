@@ -1,4 +1,4 @@
-
+ 
 String.prototype.isPalindrome = function() {
     const strStraight = this.split(' ').join('').toLowerCase();
     const halfLength = Math.floor(strStraight.length / 2);
