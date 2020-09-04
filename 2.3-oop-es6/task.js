@@ -127,9 +127,7 @@ class StudentLog {
 
   getTotalAverage() {
     const allSubjects = Object.keys(this.subjects);
-    console.log(allSubjects)
     const averages = allSubjects.map((subject) => this.getAverageBySubject(subject));
-    console.log(averages)
     return averages.reduce((acc, average) => acc += average, 0) / averages.length;
   }
 }
