@@ -25,14 +25,13 @@ const memorize = (fn, limit) => {
     const savedData = memory.find((item) => compareArrays(item.args, args));
     if (savedData) {
       return savedData.result;
-    } else {
-      const result = fn(...args);
-      memory.push({ args, result })
-      if (memory.length > limit) {
-        memory.shift();
-      }
-      return result;
     }
+    const result = fn(...args);
+    memory.push({ args, result })
+    if (memory.length > limit) {
+      memory.shift();
+    }
+    return result;
   }
   return inner;
 };
