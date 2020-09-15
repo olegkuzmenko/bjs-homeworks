@@ -36,12 +36,12 @@ class AlarmClock {
     };
   
     if (this.timerId === null) {
-      this.timerId = setInterval(this.alarmCollection.forEach((item) => checkClock(item)), 1000);
+      this.timerId = setInterval(() => this.alarmCollection.forEach((item) => checkClock(item)), 10000);
     }
   };
 
   stop() {
-    clearInterval();
+    clearInterval(this.timerId);
     this.timerId = null;
   };
 
@@ -51,8 +51,25 @@ class AlarmClock {
   };
 
   clearAlarms() {
-    clearInterval();
-    this.alarmCollection.splice(0,this.alarmCollection.length);
+    clearInterval(this.timerId);
+    this.alarmCollection.splice(0, this.alarmCollection.length);
   };
-
 };
+
+const testCase = () => {
+  const alarms = new AlarmClock();
+
+  alarms.addClock('11:19', () => { console.log('Просыпайся')}, 1);
+  alarms.addClock('11:20', () => { console.log('Поднимайся'); alarms.removeClock(2) }, 2);
+  alarms.addClock('11:21', () => { 
+    console.log('Вставай'); 
+    alarms.clearAlarms();
+    alarms.printAlarms();
+  }, 3);
+
+  alarms.printAlarms();
+  alarms.start();
+}
+
+testCase()
+
